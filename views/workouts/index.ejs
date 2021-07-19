@@ -1,0 +1,27 @@
+<%- include('../partials/header') %> 
+  <table id="all-workouts-table">
+      <thead>
+          <tr>
+              <th>Type</th>
+              <th>Reps</th>
+              <th>Sets</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% workouts.forEach(function(w) { %>
+              <tr>
+                  <td><%= w.typeOfWorkout %></td>
+                  <td><%= w.reps %></td>
+                  <td><%= w.sets %></td>
+                  <td><a href="/workouts/<%= w._id %>">DETAILS</a></td>
+                  <td>
+                  <form action="/workouts/delete/<%= w._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete Workout</button>
+                </form>
+                    </td>
+              </tr>
+          <% }); %>
+      </tbody>
+  </table>
+
+  <%- include('../partials/footer') %> 

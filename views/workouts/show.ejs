@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+
+    <section id="show-page">
+        <div>Type Of Workout: </div>
+        <div>
+            <%= workout.typeOfWorkout %>
+        </div>
+        <div>Reps: </div>
+        <div>
+            <%= workout.reps %>
+        </div>
+        <div>Sets: </div>
+        <div>
+            <%= workout.sets %>
+        </div>
+    </section>
+
+    <br><br>
+    <h2>Exercises</h2>
+    <form id="add-exercise-form" method="POST" action="/workouts/<%= workout._id %>/exercises">
+        <label>Exercise-Name:</label>
+        <textarea name="name"></textarea>
+        <label>Description:</label>
+        <textarea name="description"></textarea>
+        <input type="submit" value="Add Exercise">
+    </form>
+
+    <% if (workout.exercises.length) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercise-Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% workout.exercises.forEach(function(exercise) { %>
+                    <tr>
+                        <td>
+                            <%= exercise.name %>
+                        </td>
+                        <td>
+                            <%= exercise.description %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <h5>No Exercises Yet</h5>
+            <% } %>
+
+
+                <%- include('../partials/footer') %>
